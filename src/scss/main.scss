@@ -5,12 +5,20 @@
 @import "settings";
 
 // подключения компонентов страницы
+//big conmponents
 @import "./components/header";
+@import "./components/hero";
+
+//small components
+@import "./components/nav";
+@import "./components/cart";
+@import "./components/logo";
+
 
 // тестовые стили, удалите их
-.page__body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: var(--vh);
-}
+//.page__body {
+  //display: flex;
+  //align-items: center;
+  //justify-content: center;
+  //height: var(--vh);
+//}
