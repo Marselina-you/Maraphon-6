@@ -1,1 +1,0 @@
-{"version":3,"sources":["components/nav.scss","components/nav.css"],"names":[],"mappings":"AAEE;EACE,oBAAA;EAAA,oBAAA;EAAA,aAAA;EACA,2BAAA;EAAA,0BAAA;EAAA,kBAAA;ACDJ","file":"components/nav.css","sourcesContent":[".nav {\n\n  &__list {\n    display: flex;\n    align-self: center;\n  }\n}\n",".nav__list {\n  display: flex;\n  align-self: center;\n}"]}
