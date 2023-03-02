@@ -24,14 +24,14 @@ if (rangeSlider) {
 		let arr = [null, null];
 		arr[i] = value;
 
-		console.log(arr);
+		//console.log(arr);
 
 		rangeSlider.noUiSlider.set(arr);
 	};
 
 	inputs.forEach((el, index) => {
 		el.addEventListener('change', (e) => {
-			console.log(index);
+			//console.log(index);
 			setRangeSlider(index, e.currentTarget.value);
 		});
 	});

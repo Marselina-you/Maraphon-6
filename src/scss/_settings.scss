@@ -125,6 +125,14 @@ a {
       background-color: var(--color-accent-hover);
     }
   }
+  &--secondary {
+    background-color: var(--color-main);
+    color: var(--color-white);
+
+    &:hover {
+      background-color: var(--color-main-hover);
+    }
+  }
 }
 .title {
   margin: 0;

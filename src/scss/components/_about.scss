@@ -1,0 +1,32 @@
+.about {
+  position: relative;
+  overflow: hidden;
+  height: 580px;
+  background-color: var(--color-eastbay);
+
+  &__container {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    height: 100%;
+  }
+
+  &__image {
+    position: absolute;
+    margin-left: 17%;
+    width: 465px;
+    height: auto;
+    overflow: hidden;
+    transform: skewX(-20deg);
+    background-color: var(--color-bg);
+  }
+  img {
+    margin-left: -110px;
+    max-width: 160%;
+    height: 580px;
+    object-fit: cover;
+    transform: skewX(20deg);
+
+
+  }
+}

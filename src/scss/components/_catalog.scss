@@ -7,11 +7,14 @@
 
   }
   &__grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     grid-column: 9 span;
     }
     &__subtitle {
       margin: 0;
-      margin-bottom: var(--secong-offset);
+      margin-bottom: var(--second-offset);
       font: var(--prehigh-book);
     }
     &__caption {
@@ -22,11 +25,19 @@
     }
     &__prop {
       margin: 0;
-      margin-bottom: var(--secong-offset);
+      margin-bottom: var(--second-offset);
     }
     &__propcheckboxes {
       display: flex;
       justify-content: space-between;
+    }
+    &__apply {
+      margin-bottom: var(--second-offset);
+      width: 100%;
+
+    }
+    &__more {
+      margin-top: var(--big-offset);
     }
 }
 .catalog-list {
@@ -37,8 +48,14 @@
 }
 .catalog-filters {
   border-radius: 4px;
-  padding: var(--secong-offset);
+  padding: var(--second-offset);
   background-color: var(--color-bg);
+
+  &__btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 .catalog-price {
 
@@ -65,10 +82,13 @@
   &__input {
 
     border: 1px solid var(--color-gray);
-
     width: 50%;
     height: 50px;
+    font: var(--middle-book);
+    text-align: center;
+    color: var(--color-main);
     background-color: transparent;
+
 
     &:first-child {
       border-right: none;
@@ -82,5 +102,41 @@
     }
 
   }
+  .noUi-horizontal {
+    height: 2px;
+
+  }
+  .noUi-target {
+    border: none;
+    box-shadow: none;
+    background-color: var(--color-main);
+  }
+  .noUi-connect {
+    background: var(--color-main);
+  }
+  .noUi-horizontal .noUi-handle {
+    top: -8px;
+    width: 3px;
+    height: 18px;
+
+
+}
+.noUi-handle {
+  right: 0;
+  border: none;
+  border-radius: 100px;
+  box-shadow: none;
+  background: var(--color-main);
+  cursor: pointer;
+
+}
+.noUi-handle::after,
+.noUi-handle:before {
+  display: none;
+}
+
+.noUi-handle-lower {
+  right: -3px;
+}
 
 }
