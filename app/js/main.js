@@ -12,7 +12,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_range_slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/range-slider.js */ "./src/js/components/range-slider.js");
 /* harmony import */ var _components_quiz_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/quiz.js */ "./src/js/components/quiz.js");
 /* harmony import */ var _components_quiz_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_quiz_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_faq_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/faq.js */ "./src/js/components/faq.js");
+/* harmony import */ var _components_faq_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_components_faq_js__WEBPACK_IMPORTED_MODULE_2__);
 console.log('components');
+
 
 
 
@@ -148,6 +151,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vendor_focus_visible_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./vendor/focus-visible.js */ "./src/js/vendor/focus-visible.js");
 /* harmony import */ var _vendor_focus_visible_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_vendor_focus_visible_js__WEBPACK_IMPORTED_MODULE_0__);
 
+
+/***/ }),
+
+/***/ "./src/js/components/faq.js":
+/*!**********************************!*\
+  !*** ./src/js/components/faq.js ***!
+  \**********************************/
+/***/ (() => {
+
+document.addEventListener('DOMContentLoaded', () => {
+  const accordions = document.querySelectorAll('.faq-accordion');
+  accordions.forEach(el => {
+    el.addEventListener('click', e => {
+      const self = e.currentTarget;
+      const control = self.querySelector('.faq-accordion__control');
+      const content = self.querySelector('.faq-accordion__content');
+      self.classList.toggle('open');
+
+      // если открыт аккордеон
+      if (self.classList.contains('open')) {
+        control.setAttribute('aria-expanded', true);
+        content.setAttribute('aria-hidden', false);
+        content.style.maxHeight = content.scrollHeight + 'px';
+      } else {
+        control.setAttribute('aria-expanded', false);
+        content.setAttribute('aria-hidden', true);
+        content.style.maxHeight = null;
+      }
+    });
+  });
+});
 
 /***/ }),
 
