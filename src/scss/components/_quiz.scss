@@ -1,0 +1,130 @@
+.quiz {
+  padding: var(--big-offset) 0;
+
+  &__content {
+    border-radius: 4px;
+    padding: var(--main-offset) 100px;
+    background-color: var(--color-bg);
+  }
+  &__title {
+    margin-bottom: var(--second-offset);
+  }
+  &__descr {
+    margin: 0;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: var(--small-offset);
+    font: var(--middle-book);
+    color: var(--color-jambo);
+  }
+
+}
+.quiz-questions {
+padding: var(--second-offset);
+}
+.quiz-question {
+  &__title {
+    margin: 0;
+    margin-bottom: var(--second-offset);
+    font: var(--prehigh-book);
+    color: var(--color-main);
+  }
+  &__answers {
+    display: grid;
+    grid-auto-rows: 155px;
+    grid-template-columns: repeat(3, 1fr);
+    padding-bottom: var(--main-offset);
+    gap: var(--second-offset) 70px;
+
+
+  }
+  &__label {
+    display: block;
+  }
+  &__item {
+    img {
+      margin-bottom: var(--small-offset);
+    }
+  }
+  &__count {
+    color: var(--color-jambo);
+    font: var(--middle-book);
+  }
+}
+.quiz-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--color-jambo);
+  padding-top: var(--second-offset);
+}
+.last-question {
+  padding-top: var(--second-offset);
+  display: none;
+
+  &__form {
+    position: relative;
+    border-radius: 4px;
+    padding:  var(--main-offset);
+    max-width: 655px;
+    background-color: var(--color-cameo);
+  }
+  &__decorate {
+    position: absolute;
+    right: -185px;
+    top: -5px;
+
+    @include tablet {
+      display: none;
+    }
+
+  }
+
+  &__title {
+    margin: 0;
+    margin-bottom: var(--small-offset);
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 140px;
+    color: var(--color-white);
+
+    @include mobile {
+      font-size: 24px;
+      line-height: 3 px;
+    }
+  }
+
+  &__descr {
+    margin: 0;
+    padding: 0;
+    border-style: none;
+    margin-bottom: var(--second-offset);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 140%;
+    color: var(--color-white);
+
+  }
+  &__input {
+    margin-bottom: var(--small-offset);
+    //min-width: 500px;
+
+    &:nth-of-type(2) {
+      margin-bottom: var(--second-offset);
+    }
+    @include mobile {
+      min-width: none;
+    }
+
+  }
+  &__btn {
+    max-width: 220px;
+
+    @include mobile {
+      width: 100%;
+      min-width: auto;
+      max-width: none;
+    }
+
+  }
+}
+
