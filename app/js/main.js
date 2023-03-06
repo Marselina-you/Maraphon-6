@@ -160,8 +160,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vendor_clamp_min_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_vendor_clamp_min_js__WEBPACK_IMPORTED_MODULE_1__);
 
 
-//import "../../node_modules/clamp-js/clamp.js";
-//node_modules\clamp-js\clamp.js
 
 /***/ }),
 
@@ -280,6 +278,15 @@ if (catalogList) {
     });
   };
   loadProducts(prodQuantity);
+  catalogMore.addEventListener('click', e => {
+    prodQuantity = prodQuantity + 3;
+    loadProducts(prodQuantity);
+    if (prodQuantity >= dataLength) {
+      catalogMore.style.display = 'none';
+    } else {
+      catalogMore.style.display = 'block';
+    }
+  });
 }
 
 /***/ }),

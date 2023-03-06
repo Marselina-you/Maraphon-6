@@ -62,4 +62,16 @@ if(catalogList) {
   };
   loadProducts(prodQuantity);
 
+  catalogMore.addEventListener('click', (e) => {
+    prodQuantity = prodQuantity + 3;
+
+    loadProducts(prodQuantity);
+    if (prodQuantity >= dataLength) {
+      catalogMore.style.display = 'none';
+
+    } else {
+      catalogMore.style.display = 'block';
+    }
+  })
+
 }
