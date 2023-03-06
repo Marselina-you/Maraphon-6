@@ -189,10 +189,10 @@ a {
   height: 60px;
   font: var(--middle-book);
   background-color: var(--color-white);
-  color: var(--color-text);
+  color: var(--color-main);
 
   &::placeholder {
-    color: var(--color-grey);
+    color: var(--color-gray);
   }
 
 }

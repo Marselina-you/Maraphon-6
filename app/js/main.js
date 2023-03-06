@@ -14,7 +14,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_quiz_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_quiz_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_faq_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/faq.js */ "./src/js/components/faq.js");
 /* harmony import */ var _components_faq_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_components_faq_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_map_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/map.js */ "./src/js/components/map.js");
+/* harmony import */ var _components_map_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_components_map_js__WEBPACK_IMPORTED_MODULE_3__);
 console.log('components');
+
 
 
 
@@ -182,6 +185,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+/***/ }),
+
+/***/ "./src/js/components/map.js":
+/*!**********************************!*\
+  !*** ./src/js/components/map.js ***!
+  \**********************************/
+/***/ (() => {
+
+ymaps.ready(init);
+function init() {
+  // Создание карты.
+  const myMap = new ymaps.Map("map", {
+    // Координаты центра карты.
+    // Порядок по умолчанию: «широта, долгота».
+    // Чтобы не определять координаты центра карты вручную,
+    // воспользуйтесь инструментом Определение координат.
+    center: [55.76, 37.64],
+    // Уровень масштабирования. Допустимые значения:
+    // от 0 (весь мир) до 19.
+    zoom: 7
+  });
+}
 
 /***/ }),
 
