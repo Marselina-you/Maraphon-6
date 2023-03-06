@@ -16,7 +16,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_faq_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_components_faq_js__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _components_map_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/map.js */ "./src/js/components/map.js");
 /* harmony import */ var _components_map_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_components_map_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components_products_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/products.js */ "./src/js/components/products.js");
+/* harmony import */ var _components_products_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_components_products_js__WEBPACK_IMPORTED_MODULE_4__);
 console.log('components');
+
 
 
 
@@ -153,7 +156,12 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vendor_focus_visible_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./vendor/focus-visible.js */ "./src/js/vendor/focus-visible.js");
 /* harmony import */ var _vendor_focus_visible_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_vendor_focus_visible_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _vendor_clamp_min_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./vendor/clamp.min.js */ "./src/js/vendor/clamp.min.js");
+/* harmony import */ var _vendor_clamp_min_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_vendor_clamp_min_js__WEBPACK_IMPORTED_MODULE_1__);
 
+
+//import "../../node_modules/clamp-js/clamp.js";
+//node_modules\clamp-js\clamp.js
 
 /***/ }),
 
@@ -207,6 +215,71 @@ function init() {
     // от 0 (весь мир) до 19.
     zoom: 7
   });
+}
+
+/***/ }),
+
+/***/ "./src/js/components/products.js":
+/*!***************************************!*\
+  !*** ./src/js/components/products.js ***!
+  \***************************************/
+/***/ (() => {
+
+const catalogList = document.querySelector('.catalog-list');
+const catalogMore = document.querySelector('.catalog__more');
+let prodQuantity = 5;
+let dataLength = null;
+const normalPrice = str => {
+  return String(str).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
+};
+if (catalogList) {
+  const loadProducts = function () {
+    let quantity = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 5;
+    fetch('../data/data.json').then(responce => {
+      return responce.json();
+    }).then(data => {
+      console.log(data);
+      dataLength = data.length;
+      catalogList.innerHTML = '';
+      for (let i = 0; i < dataLength; i++) {
+        if (i < quantity) {
+          let item = data[i];
+          console.log(item);
+          catalogList.innerHTML += `
+          <li class="catalog-list__item">
+  <article class="product">
+    <div class="product__image">
+      <img src="${item.mainImage}" alt="${item.title}">
+<div class="product__btns">
+  <button class="btn-reset product__btn" data-id="${item.id}" data aria-label="Показать иформацию о товаре">
+    <svg class="">
+      <use xlink:href="img/sprite.svg#eye"></use>
+    </svg>
+  </button>
+  <button class="btn-reset product__btn" aria-label="Добавить товар в корзину">
+    <svg class="">
+      <use xlink:href="img/sprite.svg#cart"></use>
+    </svg>
+  </button>
+</div>
+    </div>
+    <h3 class="product__title">${item.title}</h3>
+    <span class="product__price">${normalPrice(item.price)}</span>
+  </article>
+</li>
+          `;
+        }
+      }
+    }).then(() => {
+      const productTitle = document.querySelectorAll('.product__title');
+      productTitle.forEach(el => {
+        $clamp(el, {
+          clamp: '22px'
+        });
+      });
+    });
+  };
+  loadProducts(prodQuantity);
 }
 
 /***/ }),
@@ -544,6 +617,105 @@ const mobileCheck = () => {
   }
   return "unknown";
 };
+
+/***/ }),
+
+/***/ "./src/js/vendor/clamp.min.js":
+/*!************************************!*\
+  !*** ./src/js/vendor/clamp.min.js ***!
+  \************************************/
+/***/ (() => {
+
+/*!
+* Clamp.js 0.5.1
+*
+* Copyright 2011-2013, Joseph Schmitt http://joe.sh
+* Released under the WTFPL license
+* http://sam.zoy.org/wtfpl/
+*/
+(function () {
+  window.$clamp = function (c, d) {
+    function s(a, b) {
+      n.getComputedStyle || (n.getComputedStyle = function (a, b) {
+        this.el = a;
+        this.getPropertyValue = function (b) {
+          var c = /(\-([a-z]){1})/g;
+          "float" == b && (b = "styleFloat");
+          c.test(b) && (b = b.replace(c, function (a, b, c) {
+            return c.toUpperCase();
+          }));
+          return a.currentStyle && a.currentStyle[b] ? a.currentStyle[b] : null;
+        };
+        return this;
+      });
+      return n.getComputedStyle(a, null).getPropertyValue(b);
+    }
+    function t(a) {
+      a = a || c.clientHeight;
+      var b = u(c);
+      return Math.max(Math.floor(a / b), 0);
+    }
+    function x(a) {
+      return u(c) * a;
+    }
+    function u(a) {
+      var b = s(a, "line-height");
+      "normal" == b && (b = 1.2 * parseInt(s(a, "font-size")));
+      return parseInt(b);
+    }
+    function l(a) {
+      if (a.lastChild.children && 0 < a.lastChild.children.length) return l(Array.prototype.slice.call(a.children).pop());
+      if (a.lastChild && a.lastChild.nodeValue && "" != a.lastChild.nodeValue && a.lastChild.nodeValue != b.truncationChar) return a.lastChild;
+      a.lastChild.parentNode.removeChild(a.lastChild);
+      return l(c);
+    }
+    function p(a, d) {
+      if (d) {
+        var e = a.nodeValue.replace(b.truncationChar, "");
+        f || (h = 0 < k.length ? k.shift() : "", f = e.split(h));
+        1 < f.length ? (q = f.pop(), r(a, f.join(h))) : f = null;
+        m && (a.nodeValue = a.nodeValue.replace(b.truncationChar, ""), c.innerHTML = a.nodeValue + " " + m.innerHTML + b.truncationChar);
+        if (f) {
+          if (c.clientHeight <= d) if (0 <= k.length && "" != h) r(a, f.join(h) + h + q), f = null;else return c.innerHTML;
+        } else "" == h && (r(a, ""), a = l(c), k = b.splitOnChars.slice(0), h = k[0], q = f = null);
+        if (b.animate) setTimeout(function () {
+          p(a, d);
+        }, !0 === b.animate ? 10 : b.animate);else return p(a, d);
+      }
+    }
+    function r(a, c) {
+      a.nodeValue = c + b.truncationChar;
+    }
+    d = d || {};
+    var n = window,
+      b = {
+        clamp: d.clamp || 2,
+        useNativeClamp: "undefined" != typeof d.useNativeClamp ? d.useNativeClamp : !0,
+        splitOnChars: d.splitOnChars || [".", "-", "\u2013", "\u2014", " "],
+        animate: d.animate || !1,
+        truncationChar: d.truncationChar || "\u2026",
+        truncationHTML: d.truncationHTML
+      },
+      e = c.style,
+      y = c.innerHTML,
+      z = "undefined" != typeof c.style.webkitLineClamp,
+      g = b.clamp,
+      v = g.indexOf && (-1 < g.indexOf("px") || -1 < g.indexOf("em")),
+      m;
+    b.truncationHTML && (m = document.createElement("span"), m.innerHTML = b.truncationHTML);
+    var k = b.splitOnChars.slice(0),
+      h = k[0],
+      f,
+      q;
+    "auto" == g ? g = t() : v && (g = t(parseInt(g)));
+    var w;
+    z && b.useNativeClamp ? (e.overflow = "hidden", e.textOverflow = "ellipsis", e.webkitBoxOrient = "vertical", e.display = "-webkit-box", e.webkitLineClamp = g, v && (e.height = b.clamp + "px")) : (e = x(g), e <= c.clientHeight && (w = p(l(c), e)));
+    return {
+      original: y,
+      clamped: w
+    };
+  };
+})();
 
 /***/ }),
 
