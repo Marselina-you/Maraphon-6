@@ -1,5 +1,10 @@
+//import GraphModal from "graph-modal";
+
+
+
 const catalogList = document.querySelector('.catalog-list');
 const catalogMore = document.querySelector('.catalog__more');
+//const modal = document.querySelector('.graph-modal');
 let  prodQuantity = 5;
 let dataLength = null;
 
@@ -30,7 +35,7 @@ if(catalogList) {
     <div class="product__image">
       <img src="${item.mainImage}" alt="${item.title}">
 <div class="product__btns">
-  <button class="btn-reset product__btn" data-id="${item.id}" data aria-label="Показать иформацию о товаре">
+  <button class="btn-reset product__btn" data-graph-path="prod-modal" data-id="${item.id}" data aria-label="Показать иформацию о товаре">
     <svg class="">
       <use xlink:href="img/sprite.svg#eye"></use>
     </svg>
@@ -52,10 +57,13 @@ if(catalogList) {
       }
     })
     .then(() => {
+
       const productTitle = document.querySelectorAll('.product__title');
       productTitle.forEach(el => {
         $clamp(el, {clamp: '22px'});
       });
+
+      const modal = new GraphModal();
 
     });
 
