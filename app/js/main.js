@@ -237,6 +237,11 @@ const catalogList = document.querySelector('.catalog-list');
 const catalogMore = document.querySelector('.catalog__more');
 const prodModal = document.querySelector('[data-graph-target ="prod-modal"] .modal-content');
 const prodModalSlider = document.querySelector('.modal-slider .swiper-wrapper');
+const prodModalPreview = document.querySelector('.modal-slider .modal-preview');
+const prodModalInfo = document.querySelector('.modal-info__wrapper');
+const prodModalDescr = document.querySelector('.modal-prod-descr');
+const prodModalChars = document.querySelector('.prod-chars');
+const prodModalVideo = document.querySelector('.prod-modal__video');
 let prodQuantity = 5;
 let dataLength = null;
 const normalPrice = str => {
@@ -293,8 +298,6 @@ if (catalogList) {
       const modal = new GraphModal({
         isOpen: modal => {
           const openBtnId = modal.previousActiveElement.dataset.id;
-
-          //console.log(openBtnId);
           loadModalData(openBtnId);
           prodSlider.update();
         }
@@ -307,14 +310,87 @@ if (catalogList) {
     fetch(`../data/data.json`).then(responce => {
       return responce.json();
     }).then(data => {
-      //prodModal.innerHTML = '';
+      prodModalSlider.innerHTML = '';
+      prodModalPreview.innerHTML = '';
+      prodModalInfo.innerHTML = '';
+      prodModalDescr.innerHTML = '';
+      prodModalChars.innerHTML = '';
+      prodModalVideo.innerHTML = '';
       for (let dataItem of data) {
         if (dataItem.id == id) {
           console.log(dataItem);
+          const slides = dataItem.gallery.map(image => {
+            return `
+      <div class="swiper-slide">
+      <img src="${image}" alt="">
+      </div>
+      `;
+          });
+          const preview = dataItem.gallery.map((image, idx) => {
+            return `
+      <div class="modal-preview__item ${idx === 0 ? 'modal-preview__item--active' : ''}" tabindex="0" data-index="${idx}">
+      <img src="${image}" alt="">
+      </div>
+
+      `;
+          });
+          const sizes = dataItem.sizes.map((size, idx) => {
+            return `
+      <li class="modal-sizes__item">
+      <button class="modal-sizes__btn">${size}</button>
+    </li>
+      `;
+          });
+          prodModalSlider.innerHTML = slides.join('');
+          prodModalPreview.innerHTML = preview.join('');
+          prodModalInfo.innerHTML = `
+          <h3 class="modal-info__title">${dataItem.title}</h3>
+          <div class="modal-info__rate">
+            <img src="img/star.svg" alt="Рейтинг 5 из 5">
+            <img src="img/star.svg" alt="">
+            <img src="img/star.svg" alt="">
+            <img src="img/star.svg" alt="">
+            <img src="img/star.svg" alt="">
+          </div>
+          <div class="modal-info__sizes">
+            <span class="modal-info__subtitle">Выберите размер</span>
+            <ul class="list-reset modal-info__sizes-list modal-sizes">
+
+${sizes.join('')}
+            </ul>
+
+          </div>
+          <div class="modal-info__price">
+            <span class="modal-info__current-price">${dataItem.price + 'p'}</span>
+            <span class="modal-info__old-price">${dataItem.oldPrice ? dataItem.oldPrice + 'p' : ''}</span>
+          </div>
+
+          `;
+          prodModalDescr.textContent = dataItem.description;
+          let charsItems = ``;
+          Object.keys(dataItem.chars).forEach(function eachKey(key) {
+            charsItems += `<p class="prod-bottom__descr prod-chars__item">${key}: ${dataItem.chars[key]}</p>`;
+          });
+          prodModalChars.innerHTML = charsItems;
+          if (dataItem.video) {
+            prodModalVideo.style.display = 'block';
+            prodModalVideo.innerHTML = ` <iframe class="prod-modal__video" src="${dataItem.video}"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+          } else {
+            prodModalVideo.style.display = 'none';
+          }
         }
       }
+    }).then(() => {
+      document.querySelectorAll('.modal-preview__item').forEach(el => {
+        el.addEventListener('click', e => {
+          const idx = parseInt(e.currentTarget.dataset.index);
+          prodSlider.slideTo(idx);
+        });
+        //
+      });
     });
   };
+
   catalogMore.addEventListener('click', e => {
     prodQuantity = prodQuantity + 3;
     loadProducts(prodQuantity);
