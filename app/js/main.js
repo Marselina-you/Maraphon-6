@@ -290,7 +290,15 @@ if (catalogList) {
           clamp: '22px'
         });
       });
-      const modal = new GraphModal();
+      const modal = new GraphModal({
+        isOpen: modal => {
+          const openBtnId = modal.previousActiveElement.dataset.id;
+
+          //console.log(openBtnId);
+          loadModalData(openBtnId);
+          prodSlider.update();
+        }
+      });
     });
   };
   loadProducts(prodQuantity);
