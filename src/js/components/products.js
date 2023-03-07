@@ -2,6 +2,7 @@
 import Swiper from "swiper";
 
 
+
 const catalogList = document.querySelector('.catalog-list');
 const catalogMore = document.querySelector('.catalog__more');
 const prodModal = document.querySelector('[data-graph-target ="prod-modal"] .modal-content');
@@ -65,24 +66,12 @@ if(catalogList) {
       }
     })
     .then(() => {
-
       const productTitle = document.querySelectorAll('.product__title');
       productTitle.forEach(el => {
         $clamp(el, {clamp: '22px'});
       });
 
-      const modal = new GraphModal({
-        isOpen: (modal) => {
-          const openBtnId = modal.previousActiveElement.dataset.id;
-
-
-
-          //console.log(openBtnId);
-          loadModalData(openBtnId);
-
-          prodSlider.update();
-        },
-      });
+      const modal = new GraphModal();
 
     });
 
