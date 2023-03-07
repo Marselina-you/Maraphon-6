@@ -17,7 +17,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_map_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/map.js */ "./src/js/components/map.js");
 /* harmony import */ var _components_map_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_components_map_js__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _components_products_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/products.js */ "./src/js/components/products.js");
+/* harmony import */ var _components_cart_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/cart.js */ "./src/js/components/cart.js");
+/* harmony import */ var _components_cart_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_components_cart_js__WEBPACK_IMPORTED_MODULE_5__);
 console.log('components');
+
 
 
 
@@ -165,6 +168,26 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+/***/ }),
+
+/***/ "./src/js/components/cart.js":
+/*!***********************************!*\
+  !*** ./src/js/components/cart.js ***!
+  \***********************************/
+/***/ (() => {
+
+const cartBtn = document.querySelector('.cart__btn');
+const miniCart = document.querySelector('.mini-cart');
+cartBtn.addEventListener('click', () => {
+  miniCart.classList.toggle('mini-cart--visible');
+});
+document.addEventListener('click', e => {
+  //console.log(e.target)
+  if (!e.target.classList.contains('mini-cart') && !e.target.closest('.mini-cart') && !e.target.closest('.mini-cart') && !e.target.classList.contains('cart__btn')) {
+    miniCart.classList.remove('mini-cart--visible');
+  }
+});
 
 /***/ }),
 
@@ -381,9 +404,22 @@ ${sizes.join('')}
         }
       }
     }).then(() => {
+      prodSlider.update();
+      prodSlider.on('slideChangeTransitionEnd', function () {
+        let idx = document.querySelector('.swiper-slide-active').dataset.index;
+        console.log(idx);
+        document.querySelectorAll('.modal-preview__item').forEach(el => {
+          el.classList.remove('modal-preview__item--active');
+        });
+        document.querySelector(`.modal-preview__item[data-index="${idx}"]`).classList.add('modal-preview__item--active');
+      });
       document.querySelectorAll('.modal-preview__item').forEach(el => {
         el.addEventListener('click', e => {
           const idx = parseInt(e.currentTarget.dataset.index);
+          document.querySelectorAll('.modal-preview__item').forEach(el => {
+            el.classList.remove('modal-preview__item--active');
+          });
+          e.currentTarget.classList.add('modal-preview__item--active');
           prodSlider.slideTo(idx);
         });
         //

@@ -175,9 +175,21 @@ ${sizes.join('')}
 }
     })
    .then(() => {
+
+    prodSlider.update();
+
+    prodSlider.on('slideChangeTransitionEnd', function () {
+      let idx = document.querySelector('.swiper-slide-active').dataset.index;
+      console.log(idx);
+      document.querySelectorAll('.modal-preview__item').forEach(el => {el.classList.remove('modal-preview__item--active');});
+      document.querySelector(`.modal-preview__item[data-index="${idx}"]`).classList.add('modal-preview__item--active');
+    });
+    
     document.querySelectorAll('.modal-preview__item').forEach(el => {
       el.addEventListener('click', (e) => {
         const idx = parseInt(e.currentTarget.dataset.index);
+        document.querySelectorAll('.modal-preview__item').forEach(el => {el.classList.remove('modal-preview__item--active');});
+        e.currentTarget.classList.add('modal-preview__item--active');
         prodSlider.slideTo(idx);
       });
       //

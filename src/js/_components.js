@@ -5,3 +5,4 @@ import './components/range-slider.js';
 import './components/faq.js';
 import './components/map.js';
 import './components/products.js';
+import './components/cart.js';

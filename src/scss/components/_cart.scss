@@ -1,23 +1,41 @@
 .cart {
+  position: relative;
   margin-left: var(--main-offset);
 
   &__btn {
     position: relative;
     width: 20px;
     height: 20px;
+
+    &--inactive {
+      pointer-events: none;
+    }
+
     svg {
       display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
       fill: var(--color-white);
+      transition: fill 0.3s ease-in-out;
+      pointer-events: none;
+    }
+    &:focus {
+      svg {
+        fill: var(--color-accent);
+      }
+    }
+    &:active {
+      svg {
+        fill: var(--color-accent-hover);
+      }
     }
   }
 
   &__count {
     position: absolute;
-    right: -6px;
-    bottom: -6px;
+    right: 10px;
+    bottom: 10px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -27,5 +45,88 @@
     font: var(--small-font);
     color: var(--color-white);
     background-color: var(--color-accent);
+   // opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+
+
+    &--visible {
+      opacity: 1;
+      transition: opacity 0.3s ease-in-out;
+    }
+
   }
+}
+.mini-cart {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 22px);
+  width: 480px;
+  box-shadow: 0px -4px 10px rgba(0, 13, 84, 0.1);
+  background-color: var(--color-white);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+
+
+  &--visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  }
+
+  &__top {
+    max-height: 323px;
+
+    .simplebar-track.simplebar-vertical {
+      right: 5px;
+      top: 20px;
+      bottom: 20px;
+      border-radius: 5px;
+      width: 4px;
+      background:  rgba(77, 77, 77, 1);
+    }
+
+    .simplebar-scrollbar::before {
+      left: 0;
+      right: auto;
+      border-radius: 5px;
+      width: 4px;
+      background:  rgba(77, 77, 77, 1);
+      opacity: 1;
+
+
+    }
+  }
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--second-offset);
+    box-shadow: 0px -4px 10px rgba(0, 13, 84, 0.1);
+    background-color: var(--color-white);
+  }
+  &__txt {
+    display: block;
+    margin-bottom: var(--small-offset);
+  }
+  //&__itog {
+    //@include mobile {
+      //margin-bottom: 20px;
+    //}
+
+  &__summ {
+    font: var(--prehigh-regular);
+    font-weight: 700;
+    color: rgba(77, 77, 77, 1);
+  }
+  &__btn {
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+&--visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
 }
