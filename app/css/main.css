@@ -814,6 +814,61 @@ a {
   color: rgb(77, 77, 77);
 }
 
+.cart-modal-product {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.cart-modal-product__image {
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  margin-right: var(--small-offset);
+  width: 80px;
+  height: 45px;
+}
+.cart-modal-product__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+.cart-modal-product__text {
+  margin-right: auto;
+  max-width: 290px;
+}
+.cart-modal-product__title {
+  margin: 0;
+  margin-bottom: 14px;
+  font: var(--small-book);
+  line-height: 20px;
+}
+.cart-modal-product__content {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.cart-modal-product__delete {
+  font: var(--small-book);
+  line-height: 14px;
+  color: var(--color-gray);
+}
+.cart-modal-product__price {
+  font: var(--prehigh-regular);
+  font-weight: 700;
+  color: rgb(77, 77, 77);
+}
+
 .about {
   position: relative;
   overflow: hidden;
@@ -1250,7 +1305,7 @@ a {
 }
 .instagram__title {
   margin-bottom: var(--second-offset);
-  color: var(--color-light);
+  color: var(--color-white);
 }
 .instagram__descr {
   margin: 0 auto;
@@ -1533,6 +1588,132 @@ a {
   color: var(--color-main);
 }
 
+.cart-modal {
+  border-radius: 4px;
+  padding: var(--main-offset);
+  width: 580px;
+}
+.cart-modal .graph-modal__close {
+  display: none;
+}
+@media (max-width: 768px) {
+  .cart-modal .graph-modal__close {
+    display: block;
+  }
+}
+.cart-modal__top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-bottom: var(--main-offset);
+}
+@media (max-width: 768px) {
+  .cart-modal__top {
+    display: block;
+  }
+}
+.cart-modal__title {
+  margin: 0;
+  font: var(--prehigh-regular);
+  font-weight: 700;
+  color: var(--color-black);
+}
+.cart-modal__order-number {
+  font: var(--small-book);
+  line-height: 14px;
+  color: var(--color-gray);
+}
+.cart-modal__input {
+  color: var(--color-gray);
+  background-color: #f6f6f6;
+}
+.cart-modal__input:not(:last-child) {
+  margin-bottom: var(--small-offset);
+}
+@media (max-width: 768px) {
+  .cart-modal {
+    width: 100%;
+    max-width: 570px;
+  }
+}
+
+.cart-modal-order {
+  margin-bottom: var(--main-offset);
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  padding: 30px;
+}
+.cart-modal-order__top {
+  font: var(--middle-book);
+  line-height: 14px;
+  color: var(--color-gray);
+}
+@media (max-width: 576px) {
+  .cart-modal-order__top {
+    font-size: 14px;
+  }
+}
+.cart-modal-order__top span {
+  font-weight: 700;
+  color: var(--color-black);
+  margin-left: 20px;
+}
+.cart-modal-order__list--visible {
+  display: block;
+}
+.cart-modal-order__list {
+  display: none;
+}
+.cart-modal-order__list--visible {
+  display: block;
+}
+.cart-modal-order__quantity {
+  margin-bottom: var(--second-offset);
+}
+.cart-modal-order__summ {
+  margin-bottom: var(--second-offset);
+}
+.cart-modal-order__item:not(:last-child) {
+  margin-bottom: 14px;
+}
+.cart-modal-order .mini-cart__item:not(:last-child) {
+  margin-bottom: 14px;
+}
+.cart-modal-order__show {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: var(--second-offset);
+  color: var(--color-gray);
+}
+.cart-modal-order__show svg {
+  margin-left: 5px;
+  width: 7px;
+  height: 7px;
+  fill: currentColor;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  transition: -webkit-transform 0.3s ease-in-out;
+  -o-transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+}
+.cart-modal-order__show--active svg {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
 .nav__list {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1598,6 +1779,7 @@ a {
   font: var(--small-font);
   color: var(--color-white);
   background-color: var(--color-accent);
+  opacity: 0;
   -webkit-transition: opacity 0.3s ease-in-out;
   -o-transition: opacity 0.3s ease-in-out;
   transition: opacity 0.3s ease-in-out;

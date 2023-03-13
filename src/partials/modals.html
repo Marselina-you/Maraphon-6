@@ -1,37 +1,42 @@
 <div class="graph-modal">
 	<div class="graph-modal__container prod-modal" role="dialog" aria-modal="true" data-graph-target="prod-modal">
 		<button class="btn-reset graph-modal__close js-modal-close" aria-label="Закрыть модальное окно"></button>
-		<div class="graph-modal__content modal-content">
-			<!-- контент модального окна -->
+		<div class="graph-modal-content">
       <div class="prod-modal__top">
 
         <div class="modal-slider">
           <div class="modal-slider__container">
             <div class="swiper-wrapper">
 
-             </div>
-          </div>
-          <div class="modal-preview">
+            </div>
+           <div class="modal-preview">
+
+
+              </div>
+
+            </div>
 
           </div>
-
-        </div>
-        <div class="modal-info">
+<div class="modal-info">
           <div class="modal-info__top">
-            <span class="modal-info__vendor">Артикул: 879876</span>
-            <span class="modal-info__quantity">В наличии: <span>13 шт</span></span>
+            <span class="modal-info__vendor">Артикул 999999</span>
+            <span class="modal-info__quantity">В наличии <span>39</span></span>
+
           </div>
           <div class="modal-info__wrapper">
-            </div>
-            <button class="btn btn-reset btn--primary modal-info__order">
-              Заказать
-            </button>
-            <ul class="modal-info__note modal-note">
-              <li class="modal-note__item">Бесплатная доставка до двери</li>
-              <li class="modal-note__item">Оплата заказа при получении</li>
-              <li class="modal-note__item">Обмен в течении двух недель</li>
-            </ul>
-</div>
+
+
+          </div>
+
+          <button class="btn btn-reset btn--primary modal-info__order">Заказать</button>
+          <ul class="modal-info__note modal-note">
+            <li class="modal-note__item">Бесплатная доставка до двери</li>
+            <li class="modal-note__item">Оплата заказа при получении</li>
+            <li class="modal-note__item">Обмен в течении двух недель</li>
+          </ul>
+        </div>
+        </div>
+
       </div>
       <div class="prod-modal__bottom prod-bottom">
         <div class="prod-bottom__column">
@@ -56,9 +61,53 @@
 
       </div>
       <div class="prod-modal__video">
-        
 
       </div>
+
+			<!-- контент модального окна -->
 		</div>
+    <!-- контент модального окна корзина-->
+    <div class="graph-modal__container cart-modal" role="dialog" aria-modal="true" data-graph-target="cart-modal">
+      <button class="btn-reset graph-modal__close js-modal-close" aria-label="Закрыть модальное окно"></button>
+      <div class="graph-modal-content modal-content">
+        <div class="cart-modal__top">
+          <h2 class="cart-modal__title">Оформление заказа</h2>
+          <span class="cart-modal__order-number">заказ 345884</span>
+
+        </div>
+        <div class="cart-modal-order">
+          <div class="cart-modal-order__top">
+            <div class="span cart-modal-order__quantity">Товаров в заказе<span></span></div>
+            <div class="span cart-modal-order__summ">Общая сумма заказа<span></span></div>
+          </div>
+          <div class="cart-modal-order__content">
+            <button class="btn-reset cart-modal-order__show">
+              Состав заказа
+             <svg>
+              <use xlink:href="img/sprite.svg#angle" />
+             </svg>
+
+              </a>
+            </button>
+            <ul class="cart-modal-order__list list-reset">
+             
+            </ul>
+          </div>
+        </div>
+
+          <form class="cart-modal__form">
+            <input type="text" class="input cart-modal__input" name="name" placeholder="Ваше имя" data-validate-field="name">
+            <input type="tel" class="input cart-modal__input" name="tel" placeholder="Номер телефона" data-validate-field="phone">
+            <input type="email" class="input cart-modal__input" name="email" placeholder="E-mail" data-validate-field="email">
+            <button class="btn-reset btn btn--primary cart-modal__btn">Оформить заказ</button>
+          </form>
+
+
+
+
+
+
+        <!-- контент модального окна -->
+      </div>
 	</div>
 </div>

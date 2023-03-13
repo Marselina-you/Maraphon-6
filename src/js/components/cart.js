@@ -11,3 +11,4 @@ document.addEventListener('click', (e) => {
     miniCart.classList.remove('mini-cart--visible');
   }
 });
+
